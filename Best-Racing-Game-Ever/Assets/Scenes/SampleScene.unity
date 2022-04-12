@@ -295,7 +295,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 0.41431, z: -1.54623}
+  m_LocalPosition: {x: 0, y: 0.414312, z: -1.54623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 963194228}
   car: {fileID: 1756704133}
-  initialCameraCarDistance: {x: -1.25, y: 1}
+  initialCameraCarDistance: {x: -1.54623, y: 0.414312}
   minXRotation: 0
   maxXRotation: 90
 --- !u!114 &963194230
