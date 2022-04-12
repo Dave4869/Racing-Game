@@ -50,6 +50,7 @@ public class MousePositionCalculation : MonoBehaviour
         // get mouse movement
         if (buttonState)
         {
+            // left right camera movement
             float xAxis = Input.GetAxis("Mouse X");
             if (xAxis != 0f)
             {
@@ -57,16 +58,31 @@ public class MousePositionCalculation : MonoBehaviour
                 cameraController.UpdateYDelta(xAxis);
                 cameraController.SetPlayerInput(true);
                 lastPlayerTime = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            } 
-            else if (System.DateTimeOffset.Now.ToUnixTimeMilliseconds() - lastPlayerTime > playerInputDelay)
-            {
-                cameraController.SetPlayerInput(false);
-            }
-            else if (System.DateTimeOffset.Now.ToUnixTimeMilliseconds() - lastPlayerTime > playerUpdateDelay)
-            {
-                cameraController.UpdateYDelta(0f);
             }
             
+            // up down camera movement
+            float yAxis = Input.GetAxis("Mouse Y");
+            if (yAxis != 0)
+            {
+                // mouse y axis turns the camera x axis ;)
+                cameraController.UpdateXDelta(yAxis);
+                cameraController.SetPlayerInput(true);
+                lastPlayerTime = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            }
+            
+            // check for camera resets
+            if (System.DateTimeOffset.Now.ToUnixTimeMilliseconds() - lastPlayerTime > playerInputDelay)
+            {
+                // the camera will follow the car automatically
+                cameraController.SetPlayerInput(false);
+            }
+            if (System.DateTimeOffset.Now.ToUnixTimeMilliseconds() - lastPlayerTime > playerUpdateDelay)
+            {
+                // set camera rotation to 0
+                cameraController.UpdateYDelta(0f);
+                cameraController.UpdateXDelta(0f);
+            }
+
         }
 
         if (delta > buttonPressOffsetTime)
